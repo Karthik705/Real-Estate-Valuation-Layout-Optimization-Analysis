@@ -15,7 +15,8 @@ This project bridges hard data analytics with spatial layout planning. Using a d
 * **Structural Value Drivers:** Furnishing status and property type demonstrated a strong positive correlation ($r = 0.58$), highlighting that modern high-rises and pre-furnished units command higher valuation premiums.
 
 ## 🚀 Dashboard Preview
-*(Insert a screenshot of your Power BI dashboard here showing the map, bar chart, and property type slicer)*
+<img width="1509" height="841" alt="image" src="https://github.com/user-attachments/assets/c1dd1700-b678-4d00-baa7-3d0b0e8db9ad" />
+<img width="1498" height="840" alt="image" src="https://github.com/user-attachments/assets/64e9219c-7f41-484c-9bd7-36875cca087e" />
 
 ## 📂 Repository Structure
 * `/data` - Contains the processed `Cleaned_Bangalore_Housing.csv` dataset.
