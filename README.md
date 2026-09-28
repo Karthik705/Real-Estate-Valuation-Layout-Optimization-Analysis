@@ -22,3 +22,20 @@ This project bridges hard data analytics with spatial layout planning. Using a d
 * `/data` - Contains the processed `Cleaned_Bangalore_Housing.csv` dataset.
 * `/notebooks` - Jupyter Notebook detailing the data wrangling and EDA process.
 * `/dashboards` - Power BI `.pbix` file and dashboard layout exports.
+
+## 🏷️ Price-Review Queue (Random Forest Anomaly Flagging)
+An extension of the valuation analysis: a repeatable process that estimates an expected price for each Bangalore villa/house listing, flags sharp deviations, and separates genuine pricing concerns from data-quality noise.
+
+📄 **[Read the full case-study report (PDF)](reports/Real_Estate_Price_Review_Report.pdf)**
+
+**Process:** Audit → Clean → De-duplicate (listing fingerprint) → Estimate (Random Forest, cross-validation grouped by fingerprint to avoid leakage) → Flag (≥ +100% over-priced, ≤ -50% under-priced) → Triage with data-quality context.
+
+**Headline results**
+* 10,320 raw listings → 5,479 usable records; **574 flagged for review (10.5%)** — 293 over-priced, 281 under-priced.
+* Owner-posted listings are flagged ~3x as often as agent-posted ones (16.4% vs 5.4%); ready-to-move properties 18.2% vs 2.7% for under-construction.
+* 71.5% of records are repeat postings of the same property.
+* Extreme-area records are flagged 41% of the time, so an area check at submission would remove many false alarms.
+
+**Limitations:** grouped cross-validation R² is 0.26 (MAE ≈ Rs 94.7 lakh) — the model ranks relative outliers rather than quoting a price. Flags are review candidates, not verdicts. Scope is villas and independent houses only.
+
+Outputs are in `/real_estate_outputs` and the modelling notebook is `Real_Estate_Valuation_Analysis.ipynb`.

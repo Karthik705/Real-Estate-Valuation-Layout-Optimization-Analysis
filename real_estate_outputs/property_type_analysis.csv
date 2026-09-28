@@ -1,0 +1,4 @@
+property_typ,listings,median_price,median_deviation_pct,anomaly_count,overpriced_count,underpriced_count,anomaly_rate_pct
+Residential House,859,18000000.0,-0.667896772455515,253,129,124,29.452852153667052
+Unknown,38,15000000.0,-9.518435957645323,15,7,8,39.473684210526315
+Villa,4582,32000000.0,-0.20557425547650263,259,169,90,5.652553470100393

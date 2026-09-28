@@ -1,0 +1,10 @@
+metric,value
+Raw records,10320.0
+Modeling records,5479.0
+Potentially overpriced,305.0
+Potentially underpriced,222.0
+Total review candidates,527.0
+Extreme-area records,221.0
+Repeated-listing records,3920.0
+Model R2,0.2797343548649157
+Model MAE,9458712.441610057
