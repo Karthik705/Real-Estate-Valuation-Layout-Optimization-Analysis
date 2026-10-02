@@ -26,16 +26,17 @@ This project bridges hard data analytics with spatial layout planning. Using a d
 ## 🏷️ Price-Review Queue (Random Forest Anomaly Flagging)
 An extension of the valuation analysis: a repeatable process that estimates an expected price for each Bangalore villa/house listing, flags sharp deviations, and separates genuine pricing concerns from data-quality noise.
 
-📄 **[Read the full case-study report (PDF)](reports/Real_Estate_Price_Review_Report.pdf)**
+📄 **[Read the full case-study write-up (PDF)](reports/Real_Estate_Price_Review_Report.pdf)** — figures below are from the current pipeline (`real_estate_outputs/project_summary.csv`) and supersede the PDF's, which were drawn from an earlier run before the grouped cross-validation fix.
 
-**Process:** Audit → Clean → De-duplicate (listing fingerprint) → Estimate (Random Forest, cross-validation grouped by fingerprint to avoid leakage) → Flag (≥ +100% over-priced, ≤ -50% under-priced) → Triage with data-quality context.
+**Process:** Audit → Clean → De-duplicate (listing fingerprint) → Estimate (Random Forest, 5-fold cross-validation grouped by fingerprint to avoid leakage) → Flag (≥ +100% over-priced, ≤ -50% under-priced) → Triage with data-quality context.
 
 **Headline results**
-* 10,320 raw listings → 5,479 usable records; **574 flagged for review (10.5%)** — 293 over-priced, 281 under-priced.
-* Owner-posted listings are flagged ~3x as often as agent-posted ones (16.4% vs 5.4%); ready-to-move properties 18.2% vs 2.7% for under-construction.
+* 10,320 raw listings → 5,479 usable records; **527 flagged for review (9.6%)** — 305 over-priced, 222 under-priced.
+* Owner-posted listings are flagged more than any other seller type (17.6%), vs 6.0% for agent-posted; ready-to-move properties are flagged far more often than under-construction (16.7% vs 2.5%).
 * 71.5% of records are repeat postings of the same property.
-* Extreme-area records are flagged 41% of the time, so an area check at submission would remove many false alarms.
+* Extreme-area records are flagged 36.7% of the time vs 1.8% for repeated listings — an area check at submission would remove many false alarms before any model runs.
+* Three localities (the grouped "Other" bucket, Sarjapur Road, Whitefield) account for 384 of the 527 flags (73%).
 
-**Limitations:** grouped cross-validation R² is 0.26 (MAE ≈ Rs 94.7 lakh) — the model ranks relative outliers rather than quoting a price. Flags are review candidates, not verdicts. Scope is villas and independent houses only.
+**Limitations:** grouped cross-validation R² is 0.28 (MAE ≈ ₹94.6 lakh) — the model ranks relative outliers rather than quoting a price. An earlier, non-grouped version of this model scored R² ≈ 0.85, but that number was inflated by leakage between duplicate postings of the same property across train/test; the notebook now reports the honest, leakage-free figure. Flags are review candidates, not verdicts. Scope is villas and independent houses only.
 
 Outputs are in `/real_estate_outputs` and the modelling notebook is `Real_Estate_Valuation_Analysis.ipynb`.
